@@ -42,6 +42,7 @@ ridge_pipe = Pipeline([
     ("Ridge",Ridge())
 ])
 score_ridge=cross_val_score(ridge_pipe,x,y,cv=5,scoring="r2")
+
 print(f"the average R^2 is {score_ridge.mean()}")
 y_pred_ridge = cross_val_predict(ridge_pipe,x,y,cv=5)
 print(f"the average prdiction is {y_pred_ridge.mean()}")
@@ -54,6 +55,7 @@ hyper_p = {
 
 grid = GridSearchCV(ridge_pipe, hyper_p, cv=5, scoring="r2")
 grid.fit(x, y)
+
 
 print("Best Parameters:", grid.best_params_)
 print("Best R^2 Score:", grid.best_score_)
